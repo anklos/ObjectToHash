@@ -19,8 +19,8 @@ class Base
     instance = send(attribute)
     unless instance.instance_values.empty?
       h[attribute] = instance.to_hash
-      else
-	h[attribute] = instance
+    else
+      h[attribute] = instance
       end
     end
     h
