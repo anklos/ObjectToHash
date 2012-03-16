@@ -1,33 +1,21 @@
 require 'activesupport'
 
 class Base
-  def self.attributes
-    @attributes
-  end
-
-  def self.attr_accessor(*vars)
-    @attributes ||= []
-    @attributes.concat vars
-    super(*vars)
-  end
-
+  
   #recursion to convert any level of nested objects to hash
   def to_hash
     h = Hash.new
-    attributes.each do |attribute|    
-    class_name = attribute.to_s.camelize
+    instance_variables.each do |attribute|    
+    attribute = attribute.to_s.delete('@')
+    class_name = attribute.classify
     instance = send(attribute)
-    unless instance.instance_values.empty?
+    unless instance.instance_variables.empty?
       h[attribute] = instance.to_hash
     else
       h[attribute] = instance
       end
     end
     h
-  end
-
-  def attributes
-    self.class.attributes
   end
 end
 
@@ -38,7 +26,7 @@ class Account < Base
 end
 
 class RatePlan < Base
-  attr_accessor :plan_b
+  attr_accessor :plan_b, :plan_c
 end
 
 class PlanB < Base
@@ -64,6 +52,7 @@ plan_b.testlala = testlala
 
 rate_plan = RatePlan.new
 rate_plan.plan_b = plan_b
+rate_plan.plan_c = 'ff'
 
 request_data = RequestData.new
 request_data.account = account
