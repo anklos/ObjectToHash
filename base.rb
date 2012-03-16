@@ -7,7 +7,6 @@ class Base
     h = Hash.new
     instance_variables.each do |attribute|    
     attribute = attribute.to_s.delete('@')
-    class_name = attribute.classify
     instance = send(attribute)
     unless instance.instance_variables.empty?
       h[attribute] = instance.to_hash
