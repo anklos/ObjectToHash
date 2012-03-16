@@ -59,4 +59,4 @@ request_data.rate_plan = rate_plan
 
 hash = request_data.to_hash
 #hash = account.to_hash
-puts hash.inspect #-->{:account=>{:num=>"1111", :name=>"shane"}, :rate_plan=>{:plan_b=>{:testlala=>{:omg=>"oooo"}}}}
+puts hash.inspect #-->{"account"=>{"num"=>"1111", "name"=>"shane"}, "rate_plan"=>{"plan_b"=>{"testlala"=>{"omg"=>"oooo"}}, "plan_c"=>"ff"}}
