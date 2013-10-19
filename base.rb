@@ -1,5 +1,3 @@
-require 'active_support'
-
 class Base
 
   #recursion to convert any level of nested objects to hash
