@@ -10,7 +10,7 @@ module ObjectToHash
       unless instance.instance_variables.empty?
 
         unless instance.respond_to? :to_hash
-          instance.extend ObjectToHash
+          instance.extend ::ObjectToHash
         end
 
         h[attribute] = instance.to_hash
