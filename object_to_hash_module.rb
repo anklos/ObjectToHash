@@ -8,13 +8,13 @@ module ObjectToHash
       attribute = attribute.to_s.delete('@')
       instance = send(attribute)
       unless instance.instance_variables.empty?
-        klass = instance.class
 
-        unless klass.respond_to? :to_hash
-          klass.send(:include, ::ObjectToHash)
+        unless instance.respond_to? :to_hash
+          instance.extend ObjectToHash
         end
 
         h[attribute] = instance.to_hash
+
       else
         h[attribute] = instance
       end
@@ -64,4 +64,3 @@ request_data.rate_plan = rate_plan
 
 hash = request_data.to_hash
 puts hash.inspect
-
