@@ -1,23 +1,24 @@
 #Convert complex ruby object into hash
 
 ##sample usage
-	class Account < Base
+	class Account
       attr_accessor :num, :name
     end
 
-    class RatePlan < Base
+    class RatePlan
       attr_accessor :plan_b, :plan_c
     end
 
-    class PlanB < Base
+    class PlanB
       attr_accessor :testlala
     end
 
-    class Testlala < Base
+    class Testlala
       attr_accessor :omg
     end
 
-    class RequestData < Base
+    class RequestData
+      include ObjectToHash
       attr_accessor :account, :rate_plan
     end
 
